@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('facturas', function (Blueprint $table) {
+       Schema::create('factura_archivos', function (Blueprint $table) {
     $table->id();
-    $table->string('tipo_factura');
-    $table->string('nombre_factura');
-    $table->date('fecha');
-    $table->string('estado')->default('pendiente');
-    $table->string('empresa');
-    $table->text('descripcion')->nullable();
+
+    $table->foreignId('factura_id')
+          ->constrained('facturas')
+          ->cascadeOnDelete();
+
+    $table->string('archivo');
     $table->timestamps();
 });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('facturas');
+        Schema::dropIfExists('factura_archivos');
     }
 };
