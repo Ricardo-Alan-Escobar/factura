@@ -2,17 +2,17 @@ import {
     SidebarGroup,
     SidebarGroupLabel,
     SidebarMenu,
-    SidebarMenuButton,
+    SidebarMenuButton, 
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { resolveUrl } from '@/lib/utils';
 import { Link, usePage } from '@inertiajs/react';
 
-export function NavMain({ items = [] }) {
+export function NavMain({ items = [], title = 'PRINCIPAL' }) {
     const page = usePage();
     return (
         <SidebarGroup className="px-2 py-0">
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
+            <SidebarGroupLabel className="text-[11px] uppercase tracking-wider text-zinc-500">{title}</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => (
                     <SidebarMenuItem key={item.title}>

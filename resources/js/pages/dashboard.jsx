@@ -14,6 +14,8 @@ import {
     SlidersHorizontal,
     Plus,
     Eye,
+    ArrowUpRight ,
+    ArrowDownLeft
 } from 'lucide-react';
 import Swal from 'sweetalert2';
 import {
@@ -43,7 +45,7 @@ export default function Dashboard({ facturas = [] }) {
 
             const breadcrumbs = [
                 {
-                    title: 'Dashboard',
+                    title: 'Todas las facturas',
                     href: '/dashboard',
                 },
             ];
@@ -182,23 +184,58 @@ export default function Dashboard({ facturas = [] }) {
                         <SelectValue placeholder="Tipo de factura" />
                     </SelectTrigger>
                     <SelectContent className="bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800">
-                        <SelectItem value="Todas">Todas</SelectItem>
-                        <SelectItem value="Emitida">Emitidas</SelectItem>
-                        <SelectItem value="Recibida">Recibidas</SelectItem>
+                        <SelectItem value="Todas">
+                            <div className="flex items-center gap-2">
+                                <FileText className="w-4 h-4" />
+                                Todas
+                            </div>
+                        </SelectItem>
+                        <SelectItem value="Emitida">
+                            <div className="flex items-center gap-2">
+                                <ArrowUpRight className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                                Emitidas
+                            </div>
+                        </SelectItem>
+                        <SelectItem value="Recibida">
+                            <div className="flex items-center gap-2">
+                                <ArrowDownLeft className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                                Recibidas
+                            </div>
+                        </SelectItem>
                     </SelectContent>
                 </Select>
-            
-                <Select value={filtroEstado} onValueChange={setFiltroEstado}>
-                    <SelectTrigger className="w-[180px] bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800">
-                        <SelectValue placeholder="Estado" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800">
-                        <SelectItem value="Todos">Todos</SelectItem>
-                        <SelectItem value="Pagada">Pagada</SelectItem>
-                        <SelectItem value="Pendiente">Pendiente</SelectItem>
-                        <SelectItem value="Vencida">Vencida</SelectItem>
-                    </SelectContent>
-                </Select>
+
+            <Select value={filtroEstado} onValueChange={setFiltroEstado}>
+                <SelectTrigger className="w-[180px] bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800">
+                    <SelectValue placeholder="Estado" />
+                </SelectTrigger>
+                <SelectContent className="bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800">
+                    <SelectItem value="Todos">
+                        <div className="flex items-center gap-2">
+                            <SlidersHorizontal className="w-4 h-4" />
+                            Todos
+                        </div>
+                    </SelectItem>
+                    <SelectItem value="Pagada">
+                        <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                            Pagada
+                        </div>
+                    </SelectItem>
+                    <SelectItem value="Pendiente">
+                        <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+                            Pendiente
+                        </div>
+                    </SelectItem>
+                    <SelectItem value="Vencida">
+                        <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                            Vencida
+                        </div>
+                    </SelectItem>
+                </SelectContent>
+            </Select>
             </div>
             
             <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
@@ -222,7 +259,7 @@ export default function Dashboard({ facturas = [] }) {
                     className="p-2 rounded-lg
                                bg-gray-100 dark:bg-zinc-800
                                hover:bg-green-100 dark:hover:bg-green-900/30
-                               transition"
+                               transition cursor-pointer"
                 >
                     <Eye className="w-4 h-4 text-gray-600 dark:text-zinc-300" />
                 </button>
@@ -231,7 +268,7 @@ export default function Dashboard({ facturas = [] }) {
                     className="p-2 rounded-lg
                                bg-gray-100 dark:bg-zinc-800
                                hover:bg-blue-100 dark:hover:bg-blue-900/30
-                               transition"
+                               transition cursor-pointer"
                 >
                     <Pencil className="w-4 h-4 text-gray-600 dark:text-zinc-300" />
                 </button>
@@ -241,7 +278,7 @@ export default function Dashboard({ facturas = [] }) {
                     className="p-2 rounded-lg
                                bg-gray-100 dark:bg-zinc-800
                                hover:bg-red-100 dark:hover:bg-red-900/30
-                               transition"
+                               transition cursor-pointer"
                 >
                     <Trash2 className="w-4 h-4 text-gray-600 dark:text-zinc-300
                                        hover:text-red-600 dark:hover:text-red-400" />

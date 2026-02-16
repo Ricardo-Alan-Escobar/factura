@@ -12,15 +12,33 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { LayoutDashboard, Folder, FileText, ChartColumn, Settings} from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems = [
     {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
+        title: 'Panel',
+        href: '/assets',
+        icon: LayoutDashboard,
     },
+    {
+        title: 'Facturas',
+        href: dashboard(),
+        icon: FileText ,
+    },
+    {
+        title: 'Reportes',
+        href: '/assets',
+        icon: ChartColumn ,
+    },
+];
+const secondaryNavItems = [
+    {
+        title: 'Configuración',
+        href: '/settings',
+        icon: Settings,
+    },
+    
 ];
 
 const footerNavItems = [
@@ -48,7 +66,8 @@ export function AppSidebar() {
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
+                  <NavMain items={mainNavItems} title="PRINCIPAL" />
+                 <NavMain items={secondaryNavItems} title="AJUSTES" />
             </SidebarContent>
 
             <SidebarFooter>
