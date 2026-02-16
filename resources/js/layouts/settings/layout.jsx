@@ -20,7 +20,7 @@ const sidebarNavItems = [
         icon: null,
     },
     {
-        title: 'Autenticación de dos factores',
+        title: 'Autenticación 2FA',
         href: show(),
         icon: null,
     },

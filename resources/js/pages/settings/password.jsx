@@ -14,7 +14,7 @@ import { edit } from '@/routes/user-password';
 
 const breadcrumbs = [
     {
-        title: 'Password settings',
+        title: 'Configuración de la contraseña',
         href: edit().url,
     },
 ];

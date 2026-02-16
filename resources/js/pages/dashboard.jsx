@@ -25,7 +25,7 @@ export default function Dashboard({ facturas = [] }) {
 
     const submit = (e) => {
         e.preventDefault();
-
+        
        post('/facturas', {
     forceFormData: true,
     preserveScroll: true,
@@ -41,7 +41,6 @@ export default function Dashboard({ facturas = [] }) {
 
             <div className="max-w-4xl mx-auto space-y-10 p-6">
 
-                {/* ================= FORMULARIO ================= */}
                 <div className="bg-card p-6 rounded-xl shadow">
                     <h2 className="text-xl font-semibold mb-6">
                         Crear Factura
@@ -137,7 +136,6 @@ export default function Dashboard({ facturas = [] }) {
                     </form>
                 </div>
 
-                {/* ================= LISTADO ================= */}
                 <div>
                     <h2 className="text-xl font-semibold mb-4">
                         Listado de Facturas
@@ -173,7 +171,6 @@ export default function Dashboard({ facturas = [] }) {
                                     </div>
                                 </div>
 
-                                {/* Archivos */}
                                 {factura.archivos?.length > 0 && (
                                     <div className="mt-3 space-y-1">
                                         {factura.archivos.map((archivo) => (
