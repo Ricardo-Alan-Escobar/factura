@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useEffect } from 'react';
-import { X, Plus, ArrowUpRight, ArrowDownLeft, Save } from 'lucide-react';
+import { X, Plus, ArrowUpRight, ArrowDownLeft, Save, Upload   } from 'lucide-react';
 import Swal from 'sweetalert2';
 
 export default function ModalFactura({ open, onClose, factura = null }) {
@@ -226,21 +226,38 @@ const showToast = (icon, title) => {
                         />
                     </div>
 
-                    {/* Archivos */}
-                    <div>
-                        <Label>
-                            {isEditing ? 'Agregar nuevos archivos' : 'Archivos adjuntos'}
-                        </Label>
-                        <Input
-                            className="mt-2"
-                            type="file"
-                            multiple
-                            onChange={(e) =>
-                                setData('archivos', e.target.files)
-                            }
-                        />
-                    </div>
-
+                  
+                       {!isEditing && (
+                            <div>
+                                <Label>Archivos adjuntos</Label>
+                                <label className="mt-2 flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-xl cursor-pointer 
+                                                 bg-gray-50 dark:bg-zinc-800/50 
+                                                 border-gray-300 dark:border-zinc-700
+                                                 hover:bg-gray-100 dark:hover:bg-zinc-800
+                                                 transition-all duration-200">
+                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <Upload className="w-8 h-8 mb-2 text-gray-400" />
+                                        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                                            <span className="font-semibold">Click para subir</span> o arrastra archivos
+                                        </p>
+                                        <p className="text-xs text-gray-400">- - - SOLO PDF - - -</p>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        multiple
+                                        className="hidden"
+                                        onChange={(e) => setData('archivos', e.target.files)}
+                                    />
+                                </label>
+                                {data.archivos?.length > 0 && (
+                                    <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                                        <p className="text-sm text-blue-700 dark:text-blue-400 font-medium">
+                                            ✓ {data.archivos.length} archivo(s) seleccionado(s)
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     {/* Footer */}
                     <div className="flex justify-end gap-3 pt-4">
                         <Button
