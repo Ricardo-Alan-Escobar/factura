@@ -6,7 +6,7 @@ use App\Models\Factura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+ 
 class FacturaController extends Controller
 {
     public function store(Request $request)
@@ -111,4 +111,14 @@ class FacturaController extends Controller
             'facturas' => $facturas
         ]);
     }
+    public function panel()
+{
+    $facturas = Factura::with('archivos')
+        ->latest()
+        ->get();
+
+    return inertia('panel', [
+        'facturas' => $facturas
+    ]);
+}
 }

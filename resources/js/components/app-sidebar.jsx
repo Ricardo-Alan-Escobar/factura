@@ -18,18 +18,13 @@ import AppLogo from './app-logo';
 const mainNavItems = [
     {
         title: 'Panel',
-        href: '/assets',
+        href: '/panel',
         icon: LayoutDashboard,
     },
     {
         title: 'Facturas',
         href: dashboard(),
         icon: FileText ,
-    },
-    {
-        title: 'Reportes',
-        href: '/assets',
-        icon: ChartColumn ,
     },
 ];
 const secondaryNavItems = [
@@ -44,7 +39,7 @@ const secondaryNavItems = [
 const footerNavItems = [
     {
         title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
+        href: 'https://github.com/Ricardo-Alan-Escobar/factura',
         icon: Folder,
     },
     

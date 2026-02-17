@@ -14,6 +14,9 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('dashboard', [FacturaController::class, 'index'])->name('dashboard');
+    Route::get('panel', [FacturaController::class, 'panel'])->name('panel');
     Route::resource('facturas', FacturaController::class)->only(['index', 'store', 'update', 'destroy']);
+    
 });
 require __DIR__.'/settings.php';
+ 
