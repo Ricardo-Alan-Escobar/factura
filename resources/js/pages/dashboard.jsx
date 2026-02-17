@@ -238,110 +238,112 @@ export default function Dashboard({ facturas = [] }) {
             </Select>
             </div>
             
-            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            
-                {facturasFiltradas.map((factura) => (
-                   <div
-            key={factura.id}
-            className="group relative rounded-2xl p-6
-                       bg-white dark:bg-zinc-900
-                       border border-gray-200 dark:border-zinc-800
-                       shadow-sm hover:shadow-lg
-                       transition-all duration-300 dark:hover:bg-zinc-900/50"
-        >
+           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
 
-            <div className="absolute top-4 right-4 flex gap-2 
-                            opacity-0 group-hover:opacity-100 
-                            transition">
-                            
-                <button
-                    onClick={() => abrirDetalle(factura)}
-                    className="p-2 rounded-lg
-                               bg-gray-100 dark:bg-zinc-800
-                               hover:bg-green-100 dark:hover:bg-green-900/30
-                               transition cursor-pointer"
-                >
-                    <Eye className="w-4 h-4 text-gray-600 dark:text-zinc-300" />
-                </button>
-                <button
-                    onClick={() => abrirModalEditar(factura)}
-                    className="p-2 rounded-lg
-                               bg-gray-100 dark:bg-zinc-800
-                               hover:bg-blue-100 dark:hover:bg-blue-900/30
-                               transition cursor-pointer"
-                >
-                    <Pencil className="w-4 h-4 text-gray-600 dark:text-zinc-300" />
-                </button>
-                
-                <button
-                    onClick={() => eliminarFactura(factura.id, factura.nombre_factura)}
-                    className="p-2 rounded-lg
-                               bg-gray-100 dark:bg-zinc-800
-                               hover:bg-red-100 dark:hover:bg-red-900/30
-                               transition cursor-pointer"
-                >
-                    <Trash2 className="w-4 h-4 text-gray-600 dark:text-zinc-300
-                                       hover:text-red-600 dark:hover:text-red-400" />
-                </button>
-            </div>
-                
-            <div className='flex gap-3 items-center mb-4'>
-            <div className="w-12 h-12 flex items-center justify-center
-                            bg-blue-100 dark:bg-blue-900/30
-                            rounded-xl mb-4">
-                <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                
-                
-            </div>
-                
-            <div>
-            <h2 className="font-semibold text-lg text-gray-800 dark:text-white">
-                {factura.nombre_factura}
-            </h2>
-                
-            <p className="text-xs text-gray-400 mb-3">
-                INV-{factura.id}
+    {facturasFiltradas.length === 0 ? (
+        <div className="col-span-full bg-white dark:bg-zinc-900 rounded-lg flex flex-col items-center justify-center py-20 text-center">
+            <div className='dark:bg-zinc-800 bg-gray-200 rounded-full p-4 mb-3'><Search className="w-12 h-12 text-gray-500 dark:text-zinc-500" /></div>
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-zinc-300">
+                No se encontraron facturas
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-zinc-400 mt-1">
+                Intenta ajustar los filtros o el término de búsqueda
             </p>
-            </div>
-            </div>
-                
-            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-zinc-400 mb-1">
-                <Building2 className="w-4 h-4" />
-                {factura.empresa}
-            </div>
-                
-                
-            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-zinc-400 mb-1">
-                <CalendarDays className="w-4 h-4" />
-                {new Date(factura.fecha).toLocaleDateString('es-ES')}
-            </div>
-                
-            {/* ARCHIVOS */}
-            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-zinc-400 mb-4">
-                <Paperclip className="w-4 h-4" />
-                {factura.archivos?.length || 0} archivo(s)
-            </div>
-                
-            {/* DIVISIÓN */}
-            <div className="border-t border-gray-200 dark:border-zinc-800 my-4" />
-                
-            {/* BADGES INFERIORES */}
-            <div className="flex justify-between items-center">
-                
-                <span className={`text-xs px-3 py-1 rounded-full font-medium ${getBadgeColor(factura.estado)}`}>
-                    {factura.estado}
-                </span>
-                
-                <span className={`text-xs px-3 py-1 rounded-full font-medium ${getTipoColor(factura.tipo_factura)}`}>
-                    {factura.tipo_factura}
-                </span>
-            </div>
-                
         </div>
+    ) : (
+        facturasFiltradas.map((factura) => (
+            <div
+                key={factura.id}
+                className="group relative rounded-2xl p-6
+                           bg-white dark:bg-zinc-900
+                           border border-gray-200 dark:border-zinc-800
+                           shadow-sm hover:shadow-lg
+                           transition-all duration-300 dark:hover:bg-zinc-900/50"
+            >
 
-                ))}
+                <div className="absolute top-4 right-4 flex gap-2 
+                                opacity-0 group-hover:opacity-100 
+                                transition">
+                    <button
+                        onClick={() => abrirDetalle(factura)}
+                        className="p-2 rounded-lg
+                                   bg-gray-100 dark:bg-zinc-800
+                                   hover:bg-green-100 dark:hover:bg-green-900/30
+                                   transition cursor-pointer"
+                    >
+                        <Eye className="w-4 h-4 text-gray-600 dark:text-zinc-300" />
+                    </button>
+                    <button
+                        onClick={() => abrirModalEditar(factura)}
+                        className="p-2 rounded-lg
+                                   bg-gray-100 dark:bg-zinc-800
+                                   hover:bg-blue-100 dark:hover:bg-blue-900/30
+                                   transition cursor-pointer"
+                    >
+                        <Pencil className="w-4 h-4 text-gray-600 dark:text-zinc-300" />
+                    </button>
+                    <button
+                        onClick={() => eliminarFactura(factura.id, factura.nombre_factura)}
+                        className="p-2 rounded-lg
+                                   bg-gray-100 dark:bg-zinc-800
+                                   hover:bg-red-100 dark:hover:bg-red-900/30
+                                   transition cursor-pointer"
+                    >
+                        <Trash2 className="w-4 h-4 text-gray-600 dark:text-zinc-300
+                                           hover:text-red-600 dark:hover:text-red-400" />
+                    </button>
+                </div>
+
+                <div className='flex gap-3 items-center mb-4'>
+                    <div className="w-12 h-12 flex items-center justify-center
+                                    bg-blue-100 dark:bg-blue-900/30
+                                    rounded-xl mb-4">
+                        <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div>
+                        <h2 className="font-semibold text-lg text-gray-800 dark:text-white">
+                            {factura.nombre_factura}
+                        </h2>
+                        <p className="text-xs text-gray-400 mb-3">
+                            INV-{factura.id}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-zinc-400 mb-1">
+                    <Building2 className="w-4 h-4" />
+                    {factura.empresa}
+                </div>
+
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-zinc-400 mb-1">
+                    <CalendarDays className="w-4 h-4" />
+                    {new Date(factura.fecha).toLocaleDateString('es-ES')}
+                </div>
+
+                {/* ARCHIVOS */}
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-zinc-400 mb-4">
+                    <Paperclip className="w-4 h-4" />
+                    {factura.archivos?.length || 0} archivo(s)
+                </div>
+
+                {/* DIVISIÓN */}
+                <div className="border-t border-gray-200 dark:border-zinc-800 my-4" />
+
+                {/* BADGES INFERIORES */}
+                <div className="flex justify-between items-center">
+                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${getBadgeColor(factura.estado)}`}>
+                        {factura.estado}
+                    </span>
+                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${getTipoColor(factura.tipo_factura)}`}>
+                        {factura.tipo_factura}
+                    </span>
+                </div>
 
             </div>
+        ))
+    )}
+
+</div>
             
             <ModalFactura
                 open={openModal}

@@ -33,9 +33,15 @@ export default function Panel() {
     const principalesEmpresas = Object.entries(empresas)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5);
+        const breadcrumbs = [
+                {
+                    title: 'Dashboard',
+                    href: '/dashboard',
+                },
+            ];
 
     return (
-        <AppLayout>
+        <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Panel General" />
 
             <div className="p-6 space-y-6">
